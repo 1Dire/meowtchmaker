@@ -1,7 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite';
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-})
+  esbuild: {
+    target: 'esnext',  // 최신 문법 허용
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      target: 'esnext',
+    },
+    include: [
+      'three',
+      'three/addons/capabilities/WebGPU.js',
+      'three/webgpu',
+    ],
+  },
+});
